@@ -5,7 +5,7 @@ import { IoSearch } from "react-icons/io5";
 import { FaFire } from "react-icons/fa";
 import { IoIosWater } from "react-icons/io";
 
-export default function Home() {
+export default function Gen1() {
   const [posts, setPosts] = useState([]);
   const [postSearch, setSearch] = useState("");
   const fetchData = async () => {
@@ -107,8 +107,7 @@ export default function Home() {
                     className="h-36 w-36 absolute mx-auto bottom-36 right-0 left-0"
                   />
                   <p className="text-xl font-medium mb-2">•{post.name.charAt(0).toUpperCase() + post.name.slice(1)}•</p>
-                  <p className="text-xl">#{("00" + (index + 1)).slice(-3)}</p>
-                  
+                  <p className="">#{("00" + (post.id)).slice(-3)}</p>
                 </div>
                 <div className={`flex justify-center align-center text-center`}>
                 {post.types.map((post) => (
