@@ -7,7 +7,7 @@ export default function Header() {
     'https://external-preview.redd.it/tQged7mKJ3cUpNMq5IMeceZvyKP3cTyHqhNmKEQ0Vv8.png?auto=webp&s=fb5fd61cae0bc9cde2bc2a006b1e2aeb0c935ce9',
   ];
   return (
-    <div className=" bg-red-500 sticky top-0 z-10">
+    <div className=" bg-red-500 sticky top-0 z-50">
               <div className="py-3">
       <div className="flex justify-between mx-14">
           <div>

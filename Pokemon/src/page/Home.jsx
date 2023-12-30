@@ -5,6 +5,7 @@ import { IoSearch } from "react-icons/io5";
 import { FaFire } from "react-icons/fa";
 import { IoIosWater } from "react-icons/io";
 
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [postSearch, setSearch] = useState("");
@@ -122,7 +123,7 @@ export default function Home() {
           </div>
           )}
         </div>
-      </Layout>
+      </Layout>~
     </>
   );
 }
