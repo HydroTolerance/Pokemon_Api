@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Layout from "../layout/Layout";
+import Layout from "../../layout/Layout";
 import { IoSearch } from "react-icons/io5";
 import { FaFire, FaLeaf, FaSkullCrossbones, FaRegDotCircle, FaStar, FaFistRaised, FaSnowflake, FaDragon} from "react-icons/fa";
 import { GiFluffyWing, GiWaterDrop,GiElectric, GiFallingRocks, GiStoneSphere } from "react-icons/gi";
@@ -8,8 +8,9 @@ import { CgPokemon } from "react-icons/cg";
 import { IoIosBug } from "react-icons/io";
 import { BsHypnotize } from "react-icons/bs";
 import { FaGear } from "react-icons/fa6";
+import { MdDarkMode } from "react-icons/md";
 
-export default function Gen2() {
+export default function Gen7() {
   const [posts, setPosts] = useState([]);
   const [postSearch, setSearch] = useState("");
   const [postDropdown, setdropDown] = useState("");
@@ -17,7 +18,7 @@ export default function Gen2() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=100&offset=151`
+        `https://pokeapi.co/api/v2/pokemon?limit=88&offset=721`
       );
       const pokemonDetails = await Promise.all(
         response.data.results.map((result) =>
@@ -53,7 +54,6 @@ export default function Gen2() {
   useEffect(() => {
     fetchData();
   }, []);
-
   const getColorBackground = (type) => {
     switch (type) {
       case "fire":
@@ -73,7 +73,7 @@ export default function Gen2() {
       case "ground":
         return "bg-yellow-600";
       case "psychic":
-        return "bg-red-300";
+        return "bg-pink-300";
       case "ghost":
         return "bg-violet-400";
       case "rock":
@@ -86,6 +86,10 @@ export default function Gen2() {
         return "bg-slate-400";
       case "dragon":
         return "bg-indigo-400";
+      case "dark":
+        return "bg-zinc-500 text-white";
+      case "fighting":
+        return "bg-red-400 text-white";
     }
   };
 
@@ -105,7 +109,8 @@ export default function Gen2() {
     rock: <GiStoneSphere className="w-4 h-4"/>,
     psychic: <BsHypnotize className="w-4 h-4"/>,
     dragon: <FaDragon className="w-4 h-4"/>,
-    steel: <FaGear className="w-4 h-4"/>
+    steel: <FaGear className="w-4 h-4"/>,
+    dark: <MdDarkMode className="w-4 h-4" />
   }
   const getColorText = (type) => {
     switch (type) {
@@ -126,13 +131,13 @@ export default function Gen2() {
       case "ground":
         return "bg-yellow-700 ";
       case "psychic":
-        return "bg-red-500";
+        return "bg-pink-500";
       case "ghost":
-        return "bg-violet-500";
+        return "bg-violet-600";
       case "rock":
         return "bg-stone-500";
       case "fighting":
-        return "bg-red-500";
+        return "bg-red-600";
       case "ice":
         return "bg-cyan-500";
       case "flying":
@@ -143,6 +148,8 @@ export default function Gen2() {
         return "bg-slate-500";
       case "dragon":
         return "bg-indigo-600";
+      case "dark":
+        return "bg-zinc-600";
     }
   };
   return (
@@ -203,9 +210,9 @@ export default function Gen2() {
                   className={`border  text-center rounded-lg relative  my-5 shadow-lg ${getColorBackground(post.types[0].type.name )} `}
                 >
                   <img
-                      src={post.sprites.other.dream_world.front_default}
-                      alt=""
-                      className="h-36 w-36 absolute mx-auto bottom-36 right-0 left-0 z-10"
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${post.id}.png`}
+                    alt=""
+                    className="h-48 w-48 absolute mx-auto bottom-32 right-0 left-0 z-10"
                     />
                   <div className="relative py-7 overflow-hidden">
                   <CgPokemon className="h-80 w-80 absolute opacity-20 text-white mx-auto top-52 left-1/2 transform -translate-x-1/2 -translate-y-1/2"/>
