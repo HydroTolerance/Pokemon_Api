@@ -165,11 +165,7 @@ export default function Gen2() {
         <div className="p-4 md:ml-64">
           <div className="flex justify-end mb-8">
             <div className="hover:border-red-500 relative mx-3">
-              <select
-                value={postDropdown}
-                onChange={hanldeDropdown}
-                className="border rounded p-[9px] my-3 min-w-80 focus:border-red-500 focus:outline-none "
-              >
+              <select value={postDropdown} onChange={hanldeDropdown} className="border rounded p-[9px] my-3 min-w-80 focus:border-red-500 focus:outline-none ">
                 <option value="" hidden>Filter Type...</option>
                 <option value=""><span><SidebarIcon icon={<IoSearch size={"28"} />}/></span>All Pokemon</option>
                 <option value="bug">Bug</option>

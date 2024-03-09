@@ -13,7 +13,7 @@ export default function Header() {
           <div>
             <img src={imgs[0]} className="h-15 w-36"/>
           </div>
-          <ul className="flex items-center justify-center text-2xl text-white">
+          <ul className="flex items-center justify-center text-white">
             <li className="flex items-center mr-5">
               <Link to="/Home" className="flex items-center">
                 Home
