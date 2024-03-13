@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Layout from "../../layout/Layout";
 import { IoSearch } from "react-icons/io5";
+import { Link } from "react-router-dom";
+
 import {
   FaFire,
   FaLeaf,
@@ -236,7 +238,6 @@ export default function Gen2() {
                 />
               </div>
             </div>
-
             {filteredPokemon.length === 0 && (
               <div>
                 <h3 className="text-center text-gray-600">No pokemon found</h3>
@@ -251,41 +252,46 @@ export default function Gen2() {
                       post.types[0].type.name
                     )} `}
                   >
-                    <img
-                      src={`https://raw.githubusercontent.com/tdmalone/pokecss-media/tree/master/graphics/pokemon/front/${post.name}.gif`}
-                      alt=""
-                      className="h-48 w-48 absolute mx-auto bottom-32 right-0 left-0 z-10"
-                    />
-                    <div className="relative py-7 overflow-hidden">
-                      <CgPokemon className="h-80 w-80 absolute opacity-20 text-white mx-auto top-52 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-                      <div dir="rtl"></div>
-                      <div className="pt-24 pb-3 z-10">
-                        <p className="text-xl font-medium mb-2">
-                          •
-                          {post.name.charAt(0).toUpperCase() +
-                            post.name.slice(1)}
-                          •
-                        </p>
-                        <p className="">#{("00" + post.id).slice(-3)}</p>
-                      </div>
-                      <div
-                        className={`flex justify-center align-center text-center text-nowrap `}
-                      >
-                        {post.types.map((post) => (
-                          <p
-                            className={`${getColorText(
-                              post.type.name
-                            )} flex justify-center items-center rounded text-white px-4 mx-3 py-1 z-10 shadow-md`}
-                          >
-                            <span className="mr-1">
-                              {iconTypes[post.type.name]}
-                            </span>
-                            {post.type.name.charAt(0).toUpperCase() +
-                              post.type.name.slice(1)}
+                    <Link
+                      to={`/Other/${post.id}`}
+                      className="flex items-center"
+                    >
+                      <img
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${post.id}.png`}
+                        alt=""
+                        className="h-48 w-48 absolute mx-auto bottom-32 right-0 left-0 z-10"
+                      />
+                      <div className="relative py-7 overflow-hidden">
+                        <CgPokemon className="h-80 w-80 absolute opacity-20 text-white mx-auto top-52 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                        <div dir="rtl"></div>
+                        <div className="pt-24 pb-3 z-10">
+                          <p className="text-xl font-medium mb-2">
+                            •
+                            {post.name.charAt(0).toUpperCase() +
+                              post.name.slice(1)}
+                            •
                           </p>
-                        ))}
+                          <p className="">#{("00" + post.id).slice(-3)}</p>
+                        </div>
+                        <div
+                          className={`flex justify-center align-center text-center text-nowrap `}
+                        >
+                          {post.types.map((post) => (
+                            <p
+                              className={`${getColorText(
+                                post.type.name
+                              )} flex justify-center items-center rounded text-white px-4 mx-3 py-1 z-10 shadow-md`}
+                            >
+                              <span className="mr-1">
+                                {iconTypes[post.type.name]}
+                              </span>
+                              {post.type.name.charAt(0).toUpperCase() +
+                                post.type.name.slice(1)}
+                            </p>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 ))}
               </div>
