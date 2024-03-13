@@ -43,7 +43,7 @@ export default function Home() {
             <div className="absolute left-0 w-1/2 h-full bg-white"></div>
             <div className="absolute left-0 w-full h-full bg-white -skew-x-12"></div>
           </div>
-          <div className="absolute tracking-wide top-1/3 right-1/2 tranform -translate-y-1/2 -translate-x-1/6 mx-10">
+          <div className="absolute tracking-wide top-1/2 right-1/2 tranform -translate-y-1/2 -translate-x-1/6 mx-10">
             <label htmlFor="" className="text-7xl font-bold">
               Gotta Catch 'Em All!
             </label>
