@@ -3,6 +3,7 @@ import axios from "axios";
 import Layout from "../../layout/Layout";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { BiUserCircle, BiShow } from "react-icons/bi";
 
 import {
   FaFire,
@@ -26,8 +27,11 @@ import { IoIosBug } from "react-icons/io";
 import { BsHypnotize } from "react-icons/bs";
 import { FaGear } from "react-icons/fa6";
 import { MdDarkMode } from "react-icons/md";
+import Other from "../Other";
 
-export default function Gen2() {
+export default function Gen1() {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
   const [posts, setPosts] = useState([]);
   const [postSearch, setSearch] = useState("");
   const [postDropdown, setdropDown] = useState("");
@@ -111,7 +115,10 @@ export default function Gen2() {
         return "bg-red-400 text-white";
     }
   };
-
+  const openModal = (post) => {
+    setSelectedPost(post);
+    setShowModal(true);
+  };
   const iconTypes = {
     fire: <FaFire className="w-4 h-4" />,
     water: <GiWaterDrop className="w-4 h-4" />,
@@ -252,46 +259,51 @@ export default function Gen2() {
                       post.types[0].type.name
                     )} `}
                   >
-                    <Link
-                      to={`/Other/${post.id}`}
-                      className="flex items-center"
-                    >
-                      <img
-                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${post.id}.png`}
-                        alt=""
-                        className="h-48 w-48 absolute mx-auto bottom-32 right-0 left-0 z-10"
+                    <img
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${post.id}.png`}
+                      alt=""
+                      className="h-48 w-48 absolute mx-auto bottom-32 right-0 left-0 z-10"
+                    />
+                    <div className="relative py-7 overflow-hidden">
+                      <BiShow
+                        className="text-3xl text-blue-800 hover:text-black cursor-pointer"
+                        onClick={() => openModal(post)}
                       />
-                      <div className="relative py-7 overflow-hidden">
-                        <CgPokemon className="h-80 w-80 absolute opacity-20 text-white mx-auto top-52 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-                        <div dir="rtl"></div>
-                        <div className="pt-24 pb-3 z-10">
-                          <p className="text-xl font-medium mb-2">
-                            •
-                            {post.name.charAt(0).toUpperCase() +
-                              post.name.slice(1)}
-                            •
-                          </p>
-                          <p className="">#{("00" + post.id).slice(-3)}</p>
-                        </div>
-                        <div
-                          className={`flex justify-center align-center text-center text-nowrap `}
-                        >
-                          {post.types.map((post) => (
-                            <p
-                              className={`${getColorText(
-                                post.type.name
-                              )} flex justify-center items-center rounded text-white px-4 mx-3 py-1 z-10 shadow-md`}
-                            >
-                              <span className="mr-1">
-                                {iconTypes[post.type.name]}
-                              </span>
-                              {post.type.name.charAt(0).toUpperCase() +
-                                post.type.name.slice(1)}
-                            </p>
-                          ))}
-                        </div>
+                      <CgPokemon className="h-80 w-80 absolute opacity-20 text-white mx-auto top-52 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                      <div dir="rtl"></div>
+                      <div className="pt-24 pb-3 z-10">
+                        <p className="text-xl font-medium mb-2">
+                          •
+                          {post.name.charAt(0).toUpperCase() +
+                            post.name.slice(1)}
+                          •
+                        </p>
+                        <p className="">#{("00" + post.id).slice(-3)}</p>
                       </div>
-                    </Link>
+                      <div
+                        className={`flex justify-center align-center text-center text-nowrap `}
+                      >
+                        {post.types.map((post) => (
+                          <p
+                            className={`${getColorText(
+                              post.type.name
+                            )} flex justify-center items-center rounded text-white px-4 mx-3 py-1 z-10 shadow-md`}
+                          >
+                            <span className="mr-1">
+                              {iconTypes[post.type.name]}
+                            </span>
+                            {post.type.name.charAt(0).toUpperCase() +
+                              post.type.name.slice(1)}
+                          </p>
+                        ))}
+                      </div>
+                      {showModal && selectedPost && (
+                        <Other
+                          post={selectedPost}
+                          onClose={() => setShowModal(false)}
+                        />
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
