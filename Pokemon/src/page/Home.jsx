@@ -38,7 +38,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="bg-lime-300 relative">
+        <div className="bg-lime-300 relative w-screen w-full">
           <div className="relative w-1/2 bg-gradient-to-r from-white  to-bg-white  h-screen block">
             <div className="absolute left-0 w-1/2 h-full bg-white"></div>
             <div className="absolute left-0 w-full h-full bg-white -skew-x-12"></div>

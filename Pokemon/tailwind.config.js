@@ -8,9 +8,7 @@ export default {
 
   theme: {
     extend: {
-      bgGradientDeg: {
-        75: "75deg",
-      },
+      backgroundOpacity: ["active"],
     },
   },
   plugins: [],

@@ -29,7 +29,7 @@ import { FaGear } from "react-icons/fa6";
 import { MdDarkMode } from "react-icons/md";
 import Other from "../Other";
 
-export default function Gen1() {
+export default function Gen1({ post }) {
   const [showModal, setShowModal] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [posts, setPosts] = useState([]);
@@ -180,6 +180,9 @@ export default function Gen1() {
   };
   return (
     <>
+      {showModal && selectedPost && (
+        <Other post={selectedPost} onClose={() => setShowModal(false)} />
+      )}
       <Layout>
         {loading ? (
           <div className="fixed top-72 left-1/2 mx-auto">
@@ -255,20 +258,17 @@ export default function Gen1() {
                 {filteredPokemon.map((post, index) => (
                   <div
                     key={index}
-                    className={`border  text-center rounded-lg relative  my-5 shadow-lg ${getColorBackground(
+                    className={`border  text-center rounded-lg relative cursor-pointer  my-5 shadow-lg ${getColorBackground(
                       post.types[0].type.name
                     )} `}
+                    onClick={() => openModal(post)}
                   >
                     <img
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${post.id}.png`}
+                      src={post.sprites.other.dream_world.front_default}
                       alt=""
                       className="h-48 w-48 absolute mx-auto bottom-32 right-0 left-0 z-10"
                     />
                     <div className="relative py-7 overflow-hidden">
-                      <BiShow
-                        className="text-3xl text-blue-800 hover:text-black cursor-pointer"
-                        onClick={() => openModal(post)}
-                      />
                       <CgPokemon className="h-80 w-80 absolute opacity-20 text-white mx-auto top-52 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                       <div dir="rtl"></div>
                       <div className="pt-24 pb-3 z-10">
@@ -297,12 +297,6 @@ export default function Gen1() {
                           </p>
                         ))}
                       </div>
-                      {showModal && selectedPost && (
-                        <Other
-                          post={selectedPost}
-                          onClose={() => setShowModal(false)}
-                        />
-                      )}
                     </div>
                   </div>
                 ))}

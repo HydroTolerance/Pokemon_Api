@@ -6,11 +6,11 @@ import { AiOutlineClose } from "react-icons/ai";
 const Other = ({ post, onClose }) => {
   return (
     <div
-      className="fixed bg-red-500 !bg-opacity-70 top-0 left-0 right-0 bottom-0 z-50  flex justify-center items-center"
+      className="fixed top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center bg-black bg-opacity-60"
       onClick={onClose}
     >
       <div
-        className="relative w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4  flex flex-col "
+        className="relative w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 z-50  flex flex-col "
         onClick={(event) => event.stopPropagation()}
       >
         <AiOutlineClose
@@ -19,8 +19,18 @@ const Other = ({ post, onClose }) => {
         />
         <p>ID: {post.id}</p>
         <p>Name: {post.name}</p>
+        <p>
+          Type:
+          {post.types[0].type.name.charAt(0).toUpperCase() +
+            post.types[0].type.name.slice(1)}
+        </p>
+        <p>
+          Abilities:
+          {post.abilities[0].ability.name}
+          {post.abilities[1].ability.name}
+        </p>
         <img
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${post.id}.png`}
+          src={post.sprites.other.dream_world.front_default}
           alt=""
           className="w-20 h-20"
         />
