@@ -25,7 +25,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center items-center">
               <Link
-                to="/Gen1"
+                to="/AllGen"
                 className="flex items-center text-xl mx-3 text-white px-4 rounded-lg bg-red-500 hover:bg-red-600 "
               >
                 Pokedex
@@ -38,7 +38,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="bg-lime-300 relative w-screen w-full">
+        <div className="bg-lime-300 relative w-screen">
           <div className="relative w-1/2 bg-gradient-to-r from-white  to-bg-white  h-screen block">
             <div className="absolute left-0 w-1/2 h-full bg-white"></div>
             <div className="absolute left-0 w-full h-full bg-white -skew-x-12"></div>

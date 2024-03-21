@@ -211,7 +211,7 @@ export default function Gen3() {
                   className={`border  text-center rounded-lg relative  my-5 shadow-lg ${getColorBackground(post.types[0].type.name )} `}
                 >
                   <img
-                    src={post.sprites.other.dream_world.front_default}
+                    src={post.sprites.other.home.front_default}
                     alt=""
                     className="h-48 w-48 absolute mx-auto bottom-32 right-0 left-0 z-10"
                     />

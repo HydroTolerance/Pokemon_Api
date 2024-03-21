@@ -264,7 +264,7 @@ export default function Gen1({ post }) {
                     onClick={() => openModal(post)}
                   >
                     <img
-                      src={post.sprites.other.dream_world.front_default}
+                      src={post.sprites.other.home.front_default}
                       alt=""
                       className="h-48 w-48 absolute mx-auto bottom-32 right-0 left-0 z-10"
                     />

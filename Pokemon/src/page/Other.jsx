@@ -58,21 +58,28 @@ const Other = ({ post, onClose }) => {
           onClick={onClose}
         />
         <img
-          src={post.sprites.other.dream_world.front_default}
+          src={post.sprites.other.home.front_default}
           alt=""
           className="w-40 h-40 mx-auto"
         />
         <p className="text-center text-2xl">
           {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
         </p>
-        <p
-          className={`mx-auto text-center w-1/4 rounded mb-3 text-white ${getColorText(
-            post.types[0].type.name
-          )}`}
+        <div
+          className={`flex justify-center align-center w-1/4 gap-5 mx-auto `}
         >
-          {post.types[0].type.name.charAt(0).toUpperCase() +
-            post.types[0].type.name.slice(1)}
-        </p>
+          {post.types.map((type) => (
+            <p
+              className={`mx-auto text-center rounded mb-3 px-3 text-white ${getColorText(
+                type.type.name
+              )}`}
+            >
+              <div key={type.type.name}>
+                {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+              </div>
+            </p>
+          ))}
+        </div>
         <div className="grid mx-auto md:grid-cols-2">
           <p className="text-center px-5">Weight: {post.weight}</p>
           <p className="text-center px-5">Height: {post.height}</p>
