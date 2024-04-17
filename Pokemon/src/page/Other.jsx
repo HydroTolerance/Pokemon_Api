@@ -1,7 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import { PiBookOpenTextLight } from "react-icons/pi";
 import { BiUserCircle, BiShow } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 const Other = ({ post, onClose }) => {
   const getColorText = (type) => {
@@ -44,6 +47,12 @@ const Other = ({ post, onClose }) => {
         return "bg-zinc-600";
     }
   };
+  
+  const [activeTab, setActiveTab] = useState(0);
+
+  const toggleTab = (index) => {
+    setActiveTab(index);
+  };
   return (
     <div
       className="fixed top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center bg-black bg-opacity-60"
@@ -84,7 +93,23 @@ const Other = ({ post, onClose }) => {
           <p className="text-center px-5">Weight: {post.weight}</p>
           <p className="text-center px-5">Height: {post.height}</p>
         </div>
+        <div>
+        <Tabs >
+      <TabList className={' flex'} >
+        <Tab className={`border-0 rounded-none px-2 me-3 ${activeTab === 0 ? 'text-blue-500 border-3 border-b border-blue-500 hover:bg-blue-100' : 'text-gray-500'}`} onClick={() => toggleTab(0)}>Title 1</Tab>
+        <Tab className={`border-0 mx-3 ${activeTab === 1 ? 'text-blue-500' : 'text-gray-500'}`} onClick={() => toggleTab(1)}>Title 2</Tab>
+      </TabList>
+
+      <TabPanel>
+        <h2>Any content 1</h2>
+      </TabPanel>
+      <TabPanel>
+        <h2>Any content 2</h2>
+      </TabPanel>
+    </Tabs>
+    </div>
       </div>
+      
     </div>
   );
 };
