@@ -49,8 +49,7 @@ const Other = ({ post, onClose }) => {
   };
   
   const [activeTab, setActiveTab] = useState(0);
-
-  const toggleTab = (index) => {
+  const TabLink = (index) => {
     setActiveTab(index);
   };
   return (
@@ -59,7 +58,7 @@ const Other = ({ post, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="relative w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 z-50  flex flex-col mx-2"
+        className="relative w-[600px] max-w-full h-[800px] bg-white rounded-xl p-4 z-50  flex flex-col mx-2"
         onClick={(event) => event.stopPropagation()}
       >
         <AiOutlineClose
@@ -89,24 +88,30 @@ const Other = ({ post, onClose }) => {
             </p>
           ))}
         </div>
-        <div className="grid mx-auto md:grid-cols-2">
-          <p className="text-center px-5">Weight: {post.weight}</p>
-          <p className="text-center px-5">Height: {post.height}</p>
-        </div>
         <div>
         <Tabs >
-      <TabList className={' flex'} >
-        <Tab className={`border-0 rounded-none px-2 me-3 ${activeTab === 0 ? 'text-blue-500 border-3 border-b border-blue-500 hover:bg-blue-100' : 'text-gray-500'}`} onClick={() => toggleTab(0)}>Title 1</Tab>
-        <Tab className={`border-0 mx-3 ${activeTab === 1 ? 'text-blue-500' : 'text-gray-500'}`} onClick={() => toggleTab(1)}>Title 2</Tab>
-      </TabList>
-
-      <TabPanel>
-        <h2>Any content 1</h2>
-      </TabPanel>
-      <TabPanel>
-        <h2>Any content 2</h2>
-      </TabPanel>
-    </Tabs>
+          <TabList className={'flex mt-4 justify-center'} >
+            <Tab className={`border-0 rounded-none px-2 me-3 ${activeTab === 0 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(0)}>About</Tab>
+            <Tab className={`border-0 rounded-none px-2 mx-3 ${ activeTab === 1 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(1)}>Base Stats</Tab>
+            <Tab className={`border-0 rounded-none px-2 mx-3 ${ activeTab === 1 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(1)}>Evolution</Tab>
+            <Tab className={`border-0 rounded-none px-2 mx-3 ${ activeTab === 1 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(1)}>Moves</Tab>
+          </TabList>
+          <TabPanel>
+          <div>
+            <p className=" px-5">Weight: {post.weight}</p>
+            <p className="px-5">Height: {post.height}</p>
+          </div>
+          </TabPanel>
+          <TabPanel>
+            <h2>Any content 2</h2>
+          </TabPanel>
+          <TabPanel>
+            <h2>Any content 3</h2>
+          </TabPanel>
+          <TabPanel>
+            <h2>Any content 4</h2>
+          </TabPanel>
+        </Tabs>
     </div>
       </div>
       
