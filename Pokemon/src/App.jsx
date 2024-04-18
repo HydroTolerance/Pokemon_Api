@@ -21,9 +21,8 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Gen2 />} />
+          <Route index element={<Gen1/>} />
           <Route path="/Gen1" element={<Gen1 />} />
-          <Route path="/About" element={<About />} />
           <Route path="/AllGen" element={<AllGen />} />
           <Route path="/Gen1" element={<Gen1 />} />
           <Route path="/Other/:id" element={<Other />} />
