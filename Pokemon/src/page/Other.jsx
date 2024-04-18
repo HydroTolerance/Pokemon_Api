@@ -122,21 +122,20 @@ const Other = ({ post, onClose }) => {
         <div>
         <Tabs >
           <TabList className={'flex mt-4 justify-center'} >
-            <Tab className={`border-0 rounded-none px-2 me-3 ${activeTab === 0 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(0)}>About</Tab>
-            <Tab className={`border-0 rounded-none px-2 mx-3 ${ activeTab === 1 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(1)}>Base Stats</Tab>
-            <Tab className={`border-0 rounded-none px-2 mx-3 ${ activeTab === 2 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(2)}>Evolution</Tab>
-            <Tab className={`border-0 rounded-none px-2 mx-3 ${ activeTab === 3 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(3)}>Moves</Tab>
+            <Tab className={`border-0 rounded-none me-2 focus:outline-none ${activeTab === 0 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(0)}>About</Tab>
+            <Tab className={`border-0 rounded-none mx-2 focus:outline-none ${ activeTab === 1 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(1)}>Base Stats</Tab>
+            <Tab className={`border-0 rounded-none mx-2 focus:outline-none ${ activeTab === 2 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(2)}>Evolution</Tab>
+            <Tab className={`border-0 rounded-none mx-2 focus:outline-none ${ activeTab === 3 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(3)}>Moves</Tab>
           </TabList>
           <TabPanel className={`px-10 mt-4`}>
-          <div className="grid grid-cols-2">
+          <div className="flex justify-evenly">
             <p className="flex flex-col">
-              <span className="text-gray-500">Weight</span>
-              <span className="text-gray-500">Height</span>
-              <span className="text-gray-500">Abilities:</span>
-              
+              <span className="text-gray-500 mb-1">Weight</span>
+              <span className="text-gray-500  mb-1">Height</span>
+              <span className="text-gray-500  mb-1">Abilities:</span>
             </p>
-            <p className="flex flex-col text-nowrap">
-              <span >{Math.round((post.weight * 2.20462262185)* 100) / 100 }</span>lbs <span>({(parseInt(post.weight) / 10).toFixed(1)} kg)</span>
+            <p className="grid">
+              <span >{Math.round((post.weight * 2.20462262185)* 100) / 100 } lbs ({(parseInt(post.weight) / 10).toFixed(1)} kg)</span>
               <span>{parseFloat((post.height *  3.28 /10)).toFixed(1).slice(0, 1) + `'` + parseFloat((post.height *  3.28 /10)).toFixed(1).slice(2) } Feet ({post.height / 10} m)</span>
               <span >{post.abilities[0].ability.name.charAt(0).toUpperCase() + post.abilities[0].ability.name.slice(1)}, {post.abilities[1].ability.name.charAt(0).toUpperCase() + post.abilities[1].ability.name.slice(1)}</span>
             </p>
