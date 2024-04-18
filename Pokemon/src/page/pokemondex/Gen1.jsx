@@ -46,9 +46,8 @@ export default function Gen1({ post }) {
           axios.get(result.url).then((response) => response.data)
         )
       );
-
       setPosts(pokemonDetails);
-      setloading();
+      setloading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -193,7 +192,7 @@ export default function Gen1({ post }) {
             <p className="text-center my-3 ml-12 text-xl">Loading ...</p>
           </div>
         ) : (
-          <div className="p-4 md:ml-64 max-sm:w-[450px]">
+          <div className="p-4 md:ml-64 ">
             <div className="lg:flex justify-end mb-8">
               <div className="hover:border-red-500 relative me-3">
                 <select
