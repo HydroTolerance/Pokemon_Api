@@ -82,6 +82,7 @@ const Other = ({ post, onClose }) => {
   const TabLink = (index) => {
     setActiveTab(index);
   };
+  
 
   return (
     <div
@@ -137,7 +138,14 @@ const Other = ({ post, onClose }) => {
             <p className="grid">
               <span >{Math.round((post.weight * 2.20462262185)* 100) / 100 } lbs ({(parseInt(post.weight) / 10).toFixed(1)} kg)</span>
               <span>{parseFloat((post.height *  3.28 /10)).toFixed(1).slice(0, 1) + `'` + parseFloat((post.height *  3.28 /10)).toFixed(1).slice(2) } Feet ({post.height / 10} m)</span>
-              <span >{post.abilities[0].ability.name.charAt(0).toUpperCase() + post.abilities[0].ability.name.slice(1)}, {post.abilities[1].ability.name.charAt(0).toUpperCase() + post.abilities[1].ability.name.slice(1)}</span>
+              <span>
+      {post.abilities.map((ability, index) => (
+        <span key={index}>
+          {ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)}
+          {index !== post.abilities.length - 1 && ', '}
+        </span>
+      ))}
+    </span>
             </p>
 
           </div>

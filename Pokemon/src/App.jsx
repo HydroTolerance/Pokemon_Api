@@ -1,7 +1,5 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import About from "./page/About";
-import Home from "./page/Home";
 import Error from "./page/Error";
 import Gen1 from "./page/pokemondex/Gen1";
 import Gen2 from "./page/pokemondex/Gen2";

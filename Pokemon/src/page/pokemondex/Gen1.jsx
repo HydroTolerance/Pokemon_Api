@@ -229,6 +229,7 @@ export default function Gen1({ post }) {
                   <option value="water">Water</option>
                 </select>
               </div>
+
               <div className=" hover:border-red-500 relative">
                 <SidebarIcon
                   icon={
