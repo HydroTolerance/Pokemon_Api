@@ -82,7 +82,13 @@ const Other = ({ post, onClose }) => {
   const TabLink = (index) => {
     setActiveTab(index);
   };
-  
+  const Measurement  = (base_stat) => {
+    if (base_stat > 100){
+      return '100';
+    } else {
+      return base_stat;
+    }
+  }
 
   return (
     <div
@@ -150,15 +156,47 @@ const Other = ({ post, onClose }) => {
 
           </div>
           </TabPanel>
-          <TabPanel>
-            <div className="flex justify-center items-center">
-              <div className="me-3">
-                <p>HP:</p>
+          <TabPanel className={`mx-10`}>
+            <div className="grid md:grid-cols-2">
+              <div className=" text-gray-500">
+                <p>HEALTH:</p>
               </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: `${post.stats[0].base_stat}%` }}></div>
+                <div class=" max-md:w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: `${Measurement(post.stats[0].base_stat)}%` }}></div>
               </div>
             </div>
+            <div className="grid md:grid-cols-2">
+              <div className="me-3 text-gray-500">
+                <p>ATTACK:</p>
+              </div>
+                <div class=" max-md:w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: `${Measurement(post.stats[1].base_stat)}%` }}></div>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2">
+              <div className="me-3 text-gray-500">
+                <p>SPECIAL ATTACK:</p>
+              </div>
+                <div class=" max-md:w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: `${Measurement(post.stats[2].base_stat)}%` }}></div>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2">
+              <div className="me-3 text-gray-500">
+                <p>SPECIAL DEFENSE:</p>
+              </div>
+                <div class=" max-md:w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: `${Measurement(post.stats[3].base_stat)}%` }}></div>
+              </div>
+            </div><div className="grid md:grid-cols-2">
+              <div className="me-3 text-gray-500">
+                <p>SPEED:</p>
+              </div>
+                <div class=" max-md:w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: `${Measurement(post.stats[4].base_stat)}%` }}></div>
+              </div>
+            </div>
+
           </TabPanel>
           <TabPanel>
               {/* Evolution panel */}
