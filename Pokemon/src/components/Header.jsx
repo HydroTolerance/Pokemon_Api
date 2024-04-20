@@ -9,22 +9,13 @@ export default function Header() {
   return (
     <div className=" bg-red-500 sticky top-0 z-20">
       <div className="py-3">
-        <div className="flex justify-between mx-14">
+        <div className="flex justify-between md:mx-14 max-md:mx-6">
           <div>
             <img src={imgs[0]} className="h-15 w-36" />
           </div>
-          <ul className="flex items-center justify-center text-white">
-            <li className="flex items-center mr-5">
-              <Link to="/Home" className="flex items-center">
-                Home
-              </Link>
-            </li>
-            <li className="flex items-center">
-              <Link to="/About" className="flex items-center">
-                About
-              </Link>
-            </li>
-          </ul>
+          <div className="my-auto font-bold text-white">
+            POKEMON API
+          </div>
         </div>
       </div>
     </div>
