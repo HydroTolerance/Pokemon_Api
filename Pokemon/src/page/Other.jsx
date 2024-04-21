@@ -150,7 +150,7 @@ const Other = ({ post, onClose }) => {
             <Tab className={`border-0 rounded-none mx-2 focus:outline-none ${ activeTab === 2 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(2)}>Evolution</Tab>
             <Tab className={`border-0 rounded-none mx-2 focus:outline-none ${ activeTab === 3 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(3)}>Moves</Tab>
           </TabList>
-          <TabPanel className={`md:px-6 max-md:px-5 mt-4`}>
+          <TabPanel className={`md:px-6 max-md:px-4 mt-4`}>
           <div className="flex justify-between max-md:mx-10 sm:mx-14 max-sm:mx-0">
             <p className="flex flex-col">
               <span className="text-gray-500 mb-1">WEIGHT</span>
