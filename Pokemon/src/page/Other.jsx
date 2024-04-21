@@ -9,6 +9,7 @@ import axios from "axios";
 
 const Other = ({ post, onClose }) => {
   const [evolutionChain, setEvolutionChain] = useState([]);
+  const [eggGroups, setEggGroups] = useState([]);
 
   useEffect(() => {
     const fetchEvolutionChain = async () => {
@@ -18,6 +19,10 @@ const Other = ({ post, onClose }) => {
         const evolutionChainResponse = await axios.get(evolutionChainUrl);
         const { chain } = evolutionChainResponse.data;
         setEvolutionChain(parseEvolutionChain(chain));
+        const eggGroupsUrl = speciesResponse.data.egg_groups.map(eggGroup => eggGroup.url);
+        const eggGroupsResponses = await Promise.all(eggGroupsUrl.map(url => axios.get(url)));
+        const eggGroupsData = eggGroupsResponses.map(response => response.data);
+        setEggGroups(eggGroupsData);
       } catch (error) {
         console.error("Error fetching evolution chain:", error);
       }
@@ -146,25 +151,37 @@ const Other = ({ post, onClose }) => {
             <Tab className={`border-0 rounded-none mx-2 focus:outline-none ${ activeTab === 3 ? 'text-blue-500 font-bold border-b mb-3 border-blue-500' : 'text-gray-500'}`} onClick={() => TabLink(3)}>Moves</Tab>
           </TabList>
           <TabPanel className={`px-10 mt-4`}>
-          <div className="flex justify-evenly">
+          <div className="flex justify-between max-md:mx-10 sm:mx-14 max-sm:mx-0">
             <p className="flex flex-col">
-              <span className="text-gray-500 mb-1">Weight</span>
-              <span className="text-gray-500  mb-1">Height</span>
-              <span className="text-gray-500  mb-1">Abilities:</span>
+              <span className="text-gray-500 mb-1">WEIGHT</span>
+              <span className="text-gray-500  mb-1">HEIGHT</span>
+              <span className="text-gray-500  mb-1">ABILITIES</span>
+              
+              <span className="text-gray-500 mb-1">BREED</span>
+              <span className="text-gray-500  mb-1">BASE EXPERIECE</span>
             </p>
             <p className="grid">
               <span >{Math.round((post.weight * 2.20462262185)* 100) / 100 } lbs ({(parseInt(post.weight) / 10).toFixed(1)} kg)</span>
               <span>{parseFloat((post.height *  3.28 /10)).toFixed(1).slice(0, 1) + `'` + parseFloat((post.height *  3.28 /10)).toFixed(1).slice(2) } Feet ({post.height / 10} m)</span>
               <span>
-      {post.abilities.map((ability, index) => (
-        <span key={index}>
-          {ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)}
-          {index !== post.abilities.length - 1 && ', '}
-        </span>
-      ))}
-    </span>
+                {post.abilities.map((ability, index) => (
+                  <span key={index}>
+                    {ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)}
+                    {index !== post.abilities.length - 1 && ', '}
+                  </span>
+                ))}
+              </span>
+              
+              <span>
+              {eggGroups.map((eggGroup, index) => (
+                <span key={index}>
+                  {eggGroup.name.charAt(0).toUpperCase() + eggGroup.name.slice(1)}
+                    {index !== eggGroups.length -1 && ', '}
+                </span>
+              ))}
+              </span>
+              <span>{post.base_experience}</span>
             </p>
-
           </div>
           </TabPanel>
           <TabPanel className={`mx-10`}>
@@ -242,7 +259,27 @@ const Other = ({ post, onClose }) => {
               </div>
             </TabPanel>
           <TabPanel>
-            <h2>Any content 4</h2>
+            <table className="text-left w-full">
+              <thead className="bg-gray-400 flex text-white w-full">
+                <tr  class="flex w-full p-2">
+                  <th className=" w-1/4">#</th>
+                  <th className=" w-1/4">Move</th>
+                  <th className="w-1/4">Level Up Acquired</th>
+                </tr>
+              </thead>
+              <tbody className="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full" style={{height: '20vh'}}>
+                {post.moves.sort((a, b) => b.version_group_details[0].level_learned_at - a.version_group_details[0].level_learned_at).map((move, index) => (
+                  <tr key={index} className="flex w-full mb-4">
+                    
+                    <td className="p-4 w-1/4">{index}</td>
+                    <td className="p-4 w-1/4">{move.move.name.charAt(0).toUpperCase() + move.move.name.slice(1)}</td>
+                    <td className="p-4 w-1/4">
+                      {move.version_group_details[0].level_learned_at}
+                    </td>
+                  </tr>
+                ))}
+                </tbody>
+            </table>
           </TabPanel>
         </Tabs>
     </div>
