@@ -89,6 +89,17 @@ const Other = ({ post, onClose }) => {
       return base_stat;
     }
   }
+  const Ranking = (index) => {
+    if (index === 0){
+      return `First Evolution`
+    } else if (index === 1){
+      return 'Second Evolution'
+    } else if (index === 2) {
+      return 'Final Evolution'
+    } else {
+      return 'No Evolution'
+    }
+  }
 
   return (
     <div
@@ -108,7 +119,7 @@ const Other = ({ post, onClose }) => {
           alt=""
           className="w-40 h-40 mx-auto"
         />
-        <p className="text-center text-2xl">
+        <p className="text-center text-2xl my-2">
           {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
         </p>
         <div
@@ -161,55 +172,70 @@ const Other = ({ post, onClose }) => {
               <div className=" text-gray-500">
                 <p>HEALTH:</p>
               </div>
-                <div class=" max-md:w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: `${Measurement(post.stats[0].base_stat)}%` }}></div>
+                <div class=" max-md:w-full bg-gray-200 rounded-full h-3.5 dark:bg-gray-700">
+                  <div className={`bg-green-600 h-3.5 rounded-full relative`} style={{ width: `${Measurement(post.stats[0].base_stat)}%` }}>
+                  <div className="text-xs text-white absolute right-0 pe-2 top-[-1px]"> {post.stats[0].base_stat} </div>
+                  </div>
               </div>
             </div>
             <div className="grid md:grid-cols-2">
               <div className="me-3 text-gray-500">
                 <p>ATTACK:</p>
               </div>
-                <div class=" max-md:w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: `${Measurement(post.stats[1].base_stat)}%` }}></div>
+                <div class=" max-md:w-full bg-gray-200 rounded-full h-3.5 dark:bg-gray-700">
+                  <div className={`bg-red-600 h-3.5 rounded-full relative`} style={{ width: `${Measurement(post.stats[1].base_stat)}%` }}>
+                    <div className="text-xs text-white absolute right-0 pe-2 top-[-1px]"> {post.stats[1].base_stat} </div>
+                  </div>
               </div>
             </div>
             <div className="grid md:grid-cols-2">
               <div className="me-3 text-gray-500">
                 <p>SPECIAL ATTACK:</p>
               </div>
-                <div class=" max-md:w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: `${Measurement(post.stats[2].base_stat)}%` }}></div>
+                <div class=" max-md:w-full bg-gray-200 rounded-full h-3.5 dark:bg-gray-700">
+                  <div className={`bg-red-600 h-3.5 rounded-full relative`} style={{ width: `${Measurement(post.stats[2].base_stat)}%` }}>
+                  <div className="text-xs text-white absolute right-0 pe-2 top-[-1px]"> {post.stats[2].base_stat} </div>
+                  </div>
               </div>
             </div>
             <div className="grid md:grid-cols-2">
               <div className="me-3 text-gray-500">
                 <p>SPECIAL DEFENSE:</p>
               </div>
-                <div class=" max-md:w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: `${Measurement(post.stats[3].base_stat)}%` }}></div>
+                <div class=" max-md:w-full bg-gray-200 rounded-full h-3.5 dark:bg-gray-700">
+                  <div className={`bg-blue-600 h-3.5 rounded-full relative`} style={{ width: `${Measurement(post.stats[3].base_stat)}%` }}>
+                  <div className="text-xs text-white absolute right-0 pe-2 top-[-1px]"> {post.stats[3].base_stat} </div>
+                  </div>
               </div>
             </div><div className="grid md:grid-cols-2">
               <div className="me-3 text-gray-500">
                 <p>SPEED:</p>
               </div>
-                <div class=" max-md:w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: `${Measurement(post.stats[4].base_stat)}%` }}></div>
+                <div class=" max-md:w-full bg-gray-200 rounded-full h-3.5 dark:bg-gray-700">
+                  <div className={`bg-blue-600 h-3.5 rounded-full relative`} style={{ width: `${Measurement(post.stats[4].base_stat)}%` }}>
+                  <div className="text-xs text-white absolute right-0 pe-2 top-[-1px]"> {post.stats[4].base_stat} </div>
+                  </div>
               </div>
             </div>
 
           </TabPanel>
           <TabPanel>
               {/* Evolution panel */}
-              <div>
+              <div className="flex flex-row justify-evenly ">
                 {evolutionChain.map((evolution, index) => (
-                  <div key={index} className="flex flex-row justify-center items-center">
-                    <img
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${evolution.id}.png`}
-                      alt=""
-                      className="w-20 h-20 mx-2"
-                    />
-                    <p>{evolution.name}</p>
-                    <p>{evolution.description}</p>
+                  <div key={index}>
+                    <div className="text-center">
+                      <img
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${evolution.id}.png`}
+                        alt=""
+                        className="w-20 h-20 mx-auto mb-3"
+                      />
+                      <p className="font-bold">{evolution.name.charAt(0).toUpperCase() + evolution.name.slice(1)}</p>
+                      <p>{evolution.description}</p>
+                    </div>
+                    <div>
+                      {Ranking(index)}
+                    </div>
                     
                   </div>
                 ))}
