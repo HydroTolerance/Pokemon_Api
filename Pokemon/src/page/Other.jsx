@@ -184,7 +184,7 @@ const Other = ({ post, onClose }) => {
             </p>
           </div>
           </TabPanel>
-          <TabPanel className={`mx-10`}>
+          <TabPanel className={``}>
             <div className="grid md:grid-cols-2">
               <div className=" text-gray-500">
                 <p>HEALTH:</p>
@@ -248,9 +248,8 @@ const Other = ({ post, onClose }) => {
                         className="w-20 h-20 mx-auto mb-3"
                       />
                       <p className="font-bold">{evolution.name.charAt(0).toUpperCase() + evolution.name.slice(1)}</p>
-                      <p>{evolution.description}</p>
                     </div>
-                    <div>
+                    <div className="text-center">
                       {Ranking(index)}
                     </div>
                     
@@ -263,7 +262,7 @@ const Other = ({ post, onClose }) => {
               <thead className="bg-gray-400 flex text-white w-full">
                 <tr  class="flex w-full p-2">
                   <th className=" w-1/4">#</th>
-                  <th className=" w-1/4">Move</th>
+                  <th className=" w-1/2">Move</th>
                   <th className="w-1/4">Level Up Acquired</th>
                 </tr>
               </thead>
@@ -272,7 +271,7 @@ const Other = ({ post, onClose }) => {
                   <tr key={index} className="flex w-full mb-4">
                     
                     <td className="p-4 w-1/4">{index}</td>
-                    <td className="p-4 w-1/4">{move.move.name.charAt(0).toUpperCase() + move.move.name.slice(1)}</td>
+                    <td className="p-4 w-1/2">{move.move.name.charAt(0).toUpperCase() + move.move.name.slice(1)}</td>
                     <td className="p-4 w-1/4">
                       {move.version_group_details[0].level_learned_at}
                     </td>

@@ -193,8 +193,8 @@ export default function Gen1({ post }) {
           </div>
         ) : (
           <div className="p-4 md:ml-64 ">
-            <div className="lg:flex justify-end mb-8">
-              <div className="hover:border-red-500 relative me-3">
+            <div className="lg:flex lg:justify-end mb-8">
+              <div className="hover:border-red-500 relative me-3 ">
                 <select
                   value={postDropdown}
                   onChange={hanldeDropdown}
