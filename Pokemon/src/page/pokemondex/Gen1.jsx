@@ -36,6 +36,9 @@ export default function Gen1({ post }) {
   const [postSearch, setSearch] = useState("");
   const [postDropdown, setdropDown] = useState("");
   const [loading, setloading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(12); 
+
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -298,6 +301,7 @@ export default function Gen1({ post }) {
                   </div>
                 ))}
               </div>
+
             )}
           </div>
         )}
