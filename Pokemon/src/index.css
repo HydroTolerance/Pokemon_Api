@@ -7,3 +7,7 @@
 .customShadow {
     box-shadow: 0 0 20px rgba(248, 125, 10, 0.474);
   }
+
+.perspective{
+  perspective: 100px;
+}
