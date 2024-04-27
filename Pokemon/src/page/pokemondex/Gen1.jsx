@@ -37,7 +37,7 @@ export default function Gen1({ post }) {
   const [postDropdown, setdropDown] = useState("");
   const [loading, setloading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(12); 
+  const [postsPerPage] = useState(12);
 
   const fetchData = async () => {
     try {
@@ -79,48 +79,6 @@ export default function Gen1({ post }) {
     fetchData();
   }, []);
 
-  const getColorBackground = (type) => {
-    switch (type) {
-      case "fire":
-        return "bg-orange-300 hover:bg-orange-400 ";
-      case "water":
-        return "bg-blue-200 hover:bg-blue-400";
-      case "grass":
-        return "bg-green-300 hover:bg-green-400";
-      case "bug":
-        return "bg-lime-300 hover:bg-lime-400";
-      case "normal":
-        return "bg-gray-300 hover:bg-gray-400";
-      case "poison":
-        return "bg-purple-300 hover:bg-purple-400";
-      case "electric":
-        return "bg-yellow-300 hover:bg-yellow-400";
-      case "ground":
-        return "bg-yellow-500 hover:bg-yellow-700";
-      case "psychic":
-        return "bg-pink-300 hover:bg-pink-400";
-      case "ghost":
-        return "bg-violet-400 hover:bg-violet-500";
-      case "rock":
-        return "bg-stone-400 hover:bg-stone-500";
-      case "fairy":
-        return "bg-red-200 text-black hover:bg-red-300";
-      case "ice":
-        return "bg-cyan-200 hover:bg-cyan-300";
-      case "steel":
-        return "bg-slate-400 hover:bg-slate-500";
-      case "dragon":
-        return "bg-indigo-400 hover:bg-indigo-500";
-      case "dark":
-        return "bg-zinc-500 text-white hover:bg-zinc-600";
-      case "fighting":
-        return "bg-red-400 text-white hover:bg-red-500";
-    }
-  };
-  const openModal = (post) => {
-    setSelectedPost(post);
-    setShowModal(true);
-  };
   const iconTypes = {
     fire: <FaFire className="w-4 h-4" />,
     water: <GiWaterDrop className="w-4 h-4" />,
@@ -143,7 +101,7 @@ export default function Gen1({ post }) {
   const getColorText = (type) => {
     switch (type) {
       case "fire":
-        return "bg-orange-500 ";
+        return "bg-orange-500 customShadow";
       case "water":
         return "bg-blue-500";
       case "grass":
@@ -182,9 +140,6 @@ export default function Gen1({ post }) {
   };
   return (
     <>
-      {showModal && selectedPost && (
-        <Other post={selectedPost} onClose={() => setShowModal(false)} />
-      )}
       <Layout>
         {loading ? (
           <div className="fixed top-72 left-1/2 mx-auto">
@@ -192,119 +147,61 @@ export default function Gen1({ post }) {
               src="https://media.tenor.com/SH31iAEWLT8AAAAj/pikachu-running.gif"
               alt=""
             />
-            <p className="text-center my-3 ml-12 text-xl">Loading ...</p>
+            <p className="text-center my-3 text-xl">Loading ...</p>
           </div>
         ) : (
-          <div className="p-4 md:ml-64 ">
-            <div className="lg:flex lg:justify-end mb-8">
-              <div className="hover:border-red-500 relative me-3 ">
-                <select
-                  value={postDropdown}
-                  onChange={hanldeDropdown}
-                  className="border rounded p-[9px] my-3 min-w-80 focus:border-red-500 focus:outline-none "
-                >
-                  <option value="" hidden>
-                    Filter Type...
-                  </option>
-                  <option value="">
-                    <span>
-                      <SidebarIcon icon={<IoSearch size={"28"} />} />
-                    </span>
-                    All Pokemon
-                  </option>
-                  <option value="bug">Bug</option>
-                  <option value="dark">Dark</option>
-                  <option value="dragon">Dragon</option>
-                  <option value="electric">Electric</option>
-                  <option value="fairy">Fairy</option>
-                  <option value="fighting">Fighting</option>
-                  <option value="fire">Fire</option>
-                  <option value="flying">Flying</option>
-                  <option value="ghost">Ghost</option>
-                  <option value="poison">Grass</option>
-                  <option value="ground">Ground</option>
-                  <option value="ice">Ice</option>
-                  <option value="normal">Normal</option>
-                  <option value="poison">Poison</option>
-                  <option value="psychic">Psychic</option>
-                  <option value="rock">Rock</option>
-                  <option value="steel">Steel</option>
-                  <option value="water">Water</option>
-                </select>
-              </div>
+            <div className="flex flex-wrap justify-center">
+              
+              {filteredPokemon.length > 0 && (
+                <>
+                  {filteredPokemon.map((post, index) => (
+                    <div
+                      key={index}
+                      className={`block px-3 py-3 w-42 border relative cursor-pointer transition-colors duration-500  `}
+                      onClick={() => openModal(post)}
+                    >
 
-              <div className=" hover:border-red-500 relative">
-                <SidebarIcon
-                  icon={
-                    <IoSearch
-                      size={"28"}
-                      className=" w-8 h-8 absolute ml-72 flex bottom-10 top-4 lg:right-3 justify-end items-end text-gray-400 pointer-events-none"
-                    />
-                  }
-                />
-                <input
-                  type="text"
-                  value={postSearch}
-                  onChange={handleSearch}
-                  className="border rounded p-[7.6px] my-3 min-w-80 focus:border-red-500 focus:outline-none"
-                  placeholder="Search Pokemon.."
-                />
-              </div>
-            </div>
-            {filteredPokemon.length === 0 && (
-              <div>
-                <h3 className="text-center text-gray-600">No pokemon found</h3>
-              </div>
-            )}
-            {filteredPokemon.length > 0 && (
-              <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-x-10">
-                {filteredPokemon.map((post, index) => (
-                  <div
-                    key={index}
-                    className={`border  text-center rounded-lg relative cursor-pointer  my-5 shadow-lg transition-colors duration-500 ${getColorBackground(
-                      post.types[0].type.name
-                    )} `}
-                    onClick={() => openModal(post)}
-                  >
-                    <img
-                      src={post.sprites.other.home.front_default}
-                      alt=""
-                      className="h-48 w-48 absolute mx-auto bottom-32 right-0 left-0 z-10 mb-3"
-                    />
-                    <div className="relative py-7 overflow-hidden">
-                      <CgPokemon className="h-80 w-80 absolute opacity-20 text-white mx-auto top-52 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-                      <div className="pt-28 pb-3 z-10">
-                        <p className="text-xl font-bold mb-2 ">
-                          {post.name.charAt(0).toUpperCase() +
-                            post.name.slice(1)}
-                        </p>
-                        <p className="">#{("00" + post.id).slice(-3)}</p>
-                      </div>
-                      <div
-                        className={`flex justify-center align-center text-center text-nowrap `}
-                      >
-                        {post.types.map((post) => (
-                          <p
-                            className={`${getColorText(
-                              post.type.name
-                            )} flex justify-center items-center rounded text-white px-4 mx-3 py-1 z-10 shadow-md`}
+                      <Link to={`/Other1/${post.name}`} className="relative ">
+                        <div className="flex justify-between ">
+                          <div className="text-gray-600">
+                            <p className="text-2xl ">{post.id}</p>
+                            <p className=" ">
+                              {post.name.charAt(0).toUpperCase() +
+                                post.name.slice(1)}
+                            </p>
+                          </div>
+                          <div
+                            className={`flex flex-col`}
                           >
-                            <span className="mr-1">
-                              {iconTypes[post.type.name]}
-                            </span>
-                            {post.type.name.charAt(0).toUpperCase() +
-                              post.type.name.slice(1)}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                            {post.types.map((post) => (
+                              <div
+                                className={`${getColorText(
+                                  post.type.name
+                                )} rounded-full text-white shadow-md p-1 mb-1`}
+                              >
+                                <span className="">
+                                  {iconTypes[post.type.name]}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
 
-            )}
-          </div>
+                        
+                        <img
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
+                        alt=""
+                        className="h-32 w-32 mx-auto"
+                      />
+                        
+                      </Link>
+                    </div>
+                  ))}
+                  </>
+              )}
+            </div>
         )}
+        
       </Layout>
     </>
   );

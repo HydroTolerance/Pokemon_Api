@@ -11,6 +11,7 @@ import Gen7 from "./page/pokemondex/Gen7";
 import Gen8 from "./page/pokemondex/Gen8";
 import Gen9 from "./page/pokemondex/Gen9";
 import Other from "./page/Other";
+import Other1 from "./page/Other1";
 
 import AllGen from "./page/pokemondex/AllGen";
 
@@ -23,7 +24,7 @@ function App() {
           <Route path="/Gen1" element={<Gen1 />} />
           <Route path="/AllGen" element={<AllGen />} />
           <Route path="/Gen1" element={<Gen1 />} />
-          <Route path="/Other/:id" element={<Other />} />
+          <Route path="/Other1/:name" element={<Other1 />} />
           <Route path="/Gen2" element={<Gen2 />} />
           <Route path="/Gen3" element={<Gen3 />} />
           <Route path="/Gen4" element={<Gen4 />} />

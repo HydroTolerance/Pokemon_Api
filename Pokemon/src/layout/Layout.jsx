@@ -6,8 +6,6 @@ export default function Layout({children}) {
   
   return (
     <>
-        <Header></Header>
-        <Sidebar></Sidebar>
         <div>{children}</div>
     </>
 
