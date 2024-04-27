@@ -81,7 +81,7 @@ function Other1() {
           <table className="text-end">
             <tr>
               <td><span className="text-gray-500 mb-1">WEIGHT</span></td>
-              <td className=""><span> {Math.round(posts.weight * 2.20462262185 * 100) / 1000}lbs ( {(parseInt(posts.weight) / 10).toFixed(1)} kg) </span></td>
+              <td className=""><span> {(Math.round(posts.weight * 2.20462262185 * 100) / 1000).toFixed(1)}lbs ( {(parseInt(posts.weight) / 10).toFixed(1)} kg) </span></td>
             </tr>
             <tr>
               <td> <span className="text-gray-500  mb-1">HEIGHT</span> </td>
