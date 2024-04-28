@@ -42,7 +42,7 @@ export default function Gen1({ post }) {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?offset=${(page - 1)* 20}limit=20`
+        `https://pokeapi.co/api/v2/pokemon?offset=${(page - 1)* 20}limit=40`
       );
       const pokemonDetails = await Promise.all(
         response.data.results.map((result) =>
