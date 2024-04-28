@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Layout from "../../layout/Layout";
 import { IoSearch } from "react-icons/io5";
@@ -35,36 +35,40 @@ export default function Gen1({ post }) {
   const [posts, setPosts] = useState([]);
   const [postSearch, setSearch] = useState("");
   const [postDropdown, setdropDown] = useState("");
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1); // Start from page 1
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=1030`
+        `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${(page - 1) * 20}`
       );
       const pokemonDetails = await Promise.all(
         response.data.results.map((result) =>
           axios.get(result.url).then((response) => response.data)
         )
       );
-      setPosts(pokemonDetails);
-      setloading(false);
+      setPosts((prevPosts) => [...prevPosts, ...pokemonDetails]);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [page]); // Fetch data when page changes
+
   const handleSearch = (e) => {
-    try {
-      const searchPokemons = e.target.value;
-      setSearch(searchPokemons);
-    } catch (error) {
-      console.error("Error in handleSearch:", error);
-    }
+    const searchPokemons = e.target.value;
+    setSearch(searchPokemons);
   };
+
   const hanldeDropdown = (e) => {
     const dropdownPokemons = e.target.value;
     setdropDown(dropdownPokemons);
   };
+
   const filteredPokemon = posts.filter(
     (post) =>
       (post.name.toLowerCase().includes(postSearch.toLowerCase()) ||
@@ -72,11 +76,6 @@ export default function Gen1({ post }) {
       (postDropdown === "" ||
         post.types.some((type) => type.type.name === postDropdown))
   );
-
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const iconTypes = {
     fire: <FaFire className="w-4 h-4" />,
@@ -98,6 +97,7 @@ export default function Gen1({ post }) {
     dark: <MdDarkMode className="w-4 h-4" />,
     ghost: <FaGhost className="w-4 h-4" />,
   };
+
   const getColorText = (type) => {
     switch (type) {
       case "fire":
@@ -136,11 +136,28 @@ export default function Gen1({ post }) {
         return "bg-indigo-600 customDragonShadow";
       case "dark":
         return "bg-zinc-600 customDarkShadow";
+      default:
+        return "";
     }
   };
+
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (containerRef.current.scrollTop === 0) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    };
+    containerRef.current.addEventListener("scroll", handleScroll);
+    return () => {
+      containerRef.current.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <>
-      <Layout>
+    <Layout>
+      <div ref={containerRef} className="overflow-y-auto h-screen">
         {loading ? (
           <div className="flex flex-col items-center justify-center min-h-screen">
             <img
@@ -152,13 +169,15 @@ export default function Gen1({ post }) {
         ) : (
           <div>
             <Header handleSearch={handleSearch}></Header>
-              {filteredPokemon.length === 0 && (
-                <div>
-                  <h3 className="text-center mt-80 text-gray-600 ">No pokemon found</h3>
-                </div>
-              )}
+            {filteredPokemon.length === 0 && (
+              <div>
+                <h3 className="text-center mt-80 text-gray-600 ">
+                  No pokemon found
+                </h3>
+              </div>
+            )}
+            
             <div className="flex flex-wrap justify-center">
-
               {filteredPokemon.length > 0 && (
                 <>
                   {filteredPokemon.map((post, index) => (
@@ -191,25 +210,21 @@ export default function Gen1({ post }) {
                             ))}
                           </div>
                         </div>
-
-                        
                         <img
-                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
-                        alt=""
-                        className="h-32 w-32 mx-auto"
-                      />
-                        
+                          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
+                          alt=""
+                          className="h-32 w-32 mx-auto"
+                        />
                       </Link>
                     </div>
                   ))}
-                  </>
+                </>
               )}
             </div>
-            </div>
+          </div>
         )}
-        
-      </Layout>
-    </>
+      </div>
+    </Layout>
   );
 }
 

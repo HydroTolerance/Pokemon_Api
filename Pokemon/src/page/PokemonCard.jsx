@@ -407,36 +407,36 @@ function PokemonCard() {
                   <th className="w-1/4">Accuracy</th>
                 </tr>
               </thead>
-              <tbody className="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full" style={{height: '20vh'}}>
+              <tbody className="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full" style={{height: '40vh'}}>
                 {posts.moves.sort((a, b) => a.version_group_details[0].level_learned_at - b.version_group_details[0].level_learned_at).filter(move => move.version_group_details.length > 0 && move.version_group_details[0].level_learned_at > 0).map((move, index) => (
                   <tr key={index} className="flex w-full mb-4">
-                    <td className="p-4 w-1/4">{index}</td>
-                    <td className="p-4 w-1/2">{move.move.name.charAt(0).toUpperCase() + move.move.name.slice(1)}</td>
-                    <td className="p-4 w-1/4">
+                    <td className="p-2 w-1/4">{index}</td>
+                    <td className="p-2 w-1/2">{move.move.name.charAt(0).toUpperCase() + move.move.name.slice(1)}</td>
+                    <td className="p-2 w-1/4">
                       {move.version_group_details[0].level_learned_at}
                     </td>
-                    <td  className="p-4 w-1/4">
+                    <td  className="p-2 w-1/4">
                     {moves && moves[index] && (
                         <div>
                           <span>{moves[index].pp}</span>
                         </div>
                       )}
                     </td>
-                    <td  className="p-4 w-1/4">
+                    <td  className="p-2 w-1/4">
                     {moves && moves[index] && (
                         <div>
                           <span>{moves[index].power || '-'}</span>
                         </div>
                       )}
                     </td>
-                    <td  className="p-4 w-1/4">
+                    <td  className="p-2 w-1/4">
                     {moves && moves[index] && (
                         <div>
                           <span>{moves[index].priority || '-'}</span>
                         </div>
                       )}
                     </td>
-                    <td  className="p-4 w-1/4">
+                    <td  className="p-2 w-1/4">
                     {moves && moves[index] && (
                         <div>
                           <span>{moves[index].accuracy || '-'}</span>
@@ -445,6 +445,7 @@ function PokemonCard() {
                     </td>
                   </tr>
                 ))}
+                
                 </tbody>
             </table>
           </div>
