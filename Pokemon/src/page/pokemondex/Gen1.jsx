@@ -28,6 +28,7 @@ import { BsHypnotize } from "react-icons/bs";
 import { FaGear } from "react-icons/fa6";
 import { MdDarkMode } from "react-icons/md";
 import Other from "../Other";
+import { FaGhost } from "react-icons/fa6";
 
 export default function Gen1({ post }) {
   const [showModal, setShowModal] = useState(false);
@@ -97,45 +98,46 @@ export default function Gen1({ post }) {
     dragon: <FaDragon className="w-4 h-4" />,
     steel: <FaGear className="w-4 h-4" />,
     dark: <MdDarkMode className="w-4 h-4" />,
+    ghost: <FaGhost className="w-4 h-4" />,
   };
   const getColorText = (type) => {
     switch (type) {
       case "fire":
-        return "bg-orange-500 customShadow";
+        return "bg-orange-500 customFireShadow";
       case "water":
-        return "bg-blue-500";
+        return "bg-blue-500 customWaterShadow";
       case "grass":
-        return "bg-green-500";
+        return "bg-green-500 customGrassShadow";
       case "bug":
-        return "bg-lime-500";
+        return "bg-lime-500 customBugShadow";
       case "normal":
-        return "bg-gray-500";
+        return "bg-gray-500 customNormalShadow";
       case "poison":
-        return "bg-purple-500";
+        return "bg-purple-500 customPoisonShadow";
       case "electric":
-        return "bg-yellow-500";
+        return "bg-yellow-500 customElectricShadow";
       case "ground":
-        return "bg-yellow-700 ";
+        return "bg-yellow-700 customGroundShadow";
       case "psychic":
-        return "bg-pink-500";
+        return "bg-pink-500 customPsychicShadow";
       case "ghost":
-        return "bg-violet-600";
+        return "bg-violet-600 customGhostShadow";
       case "rock":
-        return "bg-stone-500";
+        return "bg-stone-500 customRockShadow";
       case "fighting":
-        return "bg-red-600";
+        return "bg-red-600 customFightShadow";
       case "ice":
-        return "bg-cyan-500";
+        return "bg-cyan-500 customIceShadow";
       case "flying":
-        return "bg-gray-200 !text-black";
+        return "bg-gray-400 customFlyShadow";
       case "fairy":
-        return "bg-red-400 text-black";
+        return "bg-red-400 customFairyShadow";
       case "steel":
-        return "bg-slate-500";
+        return "bg-slate-500 customSteelShadow";
       case "dragon":
-        return "bg-indigo-600";
+        return "bg-indigo-600 customDragonShadow";
       case "dark":
-        return "bg-zinc-600";
+        return "bg-zinc-600 customDarkShadow";
     }
   };
   return (

@@ -4,10 +4,61 @@
 @tailwind utilities;
 
 *{font-family: 'Poppins', sans-serif;}
-.customShadow {
+.customFireShadow {
     box-shadow: 0 0 20px rgba(248, 125, 10, 0.474);
   }
 
-.perspective{
-  perspective: 100px;
-}
+  .customWaterShadow {
+    box-shadow: 0 0 20px rgba(22, 10, 248, 0.474);
+  }
+  .customGrassShadow {
+    box-shadow: 0 0 20px rgba(10, 248, 30, 0.474);
+  }
+  .customBugShadow {
+    box-shadow: 0 0 20px rgba(66, 248, 10, 0.474);
+  }
+  .customNormalShadow {
+    box-shadow: 0 0 20px rgba(107, 107, 107, 0.474);
+  }
+  .customPoisonShadow {
+    box-shadow: 0 0 20px rgba(204, 10, 248, 0.474);
+  }
+  .customElectricShadow {
+    box-shadow: 0 0 20px rgba(244, 248, 10, 0.474);
+  }
+  .customGroundShadow {
+    box-shadow: 0 0 20px rgba(207, 145, 21, 0.474);
+  }
+  .customPsychicShadow {
+    box-shadow: 0 0 20px rgba(248, 10, 177, 0.474);
+  }
+  .customGhostShadow {
+    box-shadow: 0 0 20px rgba(235, 21, 255, 0.474);
+  }
+  .customFightShadow {
+    box-shadow: 0 0 20px rgba(255, 28, 28, 0.474);
+  }
+  .customIceShadow {
+    box-shadow: 0 0 20px rgba(10, 228, 248, 0.474);
+  }
+
+  .customFlyShadow {
+    box-shadow: 0 0 20px rgba(57, 158, 189, 0.474);
+  }
+
+  .customFairyShadow {
+    box-shadow: 0 0 20px rgba(253, 8, 155, 0.474);
+  }
+
+  .customSteelShadow {
+    box-shadow: 0 0 20px rgba(115, 115, 115, 0.474);
+  }
+
+  .customDragonShadow {
+    box-shadow: 0 0 20px rgba(7, 21, 219, 0.474);
+  }
+
+  .customDarkShadow {
+    box-shadow: 0 0 20px rgba(42, 39, 41, 0.474);
+  }
+
