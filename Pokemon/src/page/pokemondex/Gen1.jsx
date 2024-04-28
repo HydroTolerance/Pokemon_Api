@@ -4,6 +4,7 @@ import Layout from "../../layout/Layout";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { BiUserCircle, BiShow } from "react-icons/bi";
+import Header from "../../components/Header";
 
 import {
   FaFire,
@@ -31,19 +32,15 @@ import Other from "../Other";
 import { FaGhost } from "react-icons/fa6";
 
 export default function Gen1({ post }) {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null);
   const [posts, setPosts] = useState([]);
   const [postSearch, setSearch] = useState("");
   const [postDropdown, setdropDown] = useState("");
   const [loading, setloading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(12);
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=151`
+        `https://pokeapi.co/api/v2/pokemon?limit=1030`
       );
       const pokemonDetails = await Promise.all(
         response.data.results.map((result) =>
@@ -75,6 +72,7 @@ export default function Gen1({ post }) {
       (postDropdown === "" ||
         post.types.some((type) => type.type.name === postDropdown))
   );
+
 
   useEffect(() => {
     fetchData();
@@ -144,26 +142,31 @@ export default function Gen1({ post }) {
     <>
       <Layout>
         {loading ? (
-          <div className="fixed top-72 left-1/2 mx-auto">
+          <div className="flex flex-col items-center justify-center min-h-screen">
             <img
               src="https://media.tenor.com/SH31iAEWLT8AAAAj/pikachu-running.gif"
               alt=""
+              className="h-20 w-30"
             />
-            <p className="text-center my-3 text-xl">Loading ...</p>
           </div>
         ) : (
+          <div>
+            <Header handleSearch={handleSearch}></Header>
+              {filteredPokemon.length === 0 && (
+                <div>
+                  <h3 className="text-center mt-80 text-gray-600 ">No pokemon found</h3>
+                </div>
+              )}
             <div className="flex flex-wrap justify-center">
-              
+
               {filteredPokemon.length > 0 && (
                 <>
                   {filteredPokemon.map((post, index) => (
                     <div
                       key={index}
-                      className={`block px-3 py-3 w-42 border relative cursor-pointer transition-colors duration-500  `}
-                      onClick={() => openModal(post)}
+                      className={`block px-3 py-3 w-42 border relative cursor-pointer transition-colors hover:bg-gray-400 hover:bg-opacity-50 duration-700  `}
                     >
-
-                      <Link to={`/Other1/${post.name}`} className="relative ">
+                      <Link to={`/pokemon/${post.name}`} className="relative ">
                         <div className="flex justify-between ">
                           <div className="text-gray-600">
                             <p className="text-2xl ">{post.id}</p>
@@ -201,6 +204,7 @@ export default function Gen1({ post }) {
                   ))}
                   </>
               )}
+            </div>
             </div>
         )}
         

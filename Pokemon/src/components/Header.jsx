@@ -1,25 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { FaFire, FaBaby } from "react-icons/fa";
+import { IoSearch } from "react-icons/io5";
 
-export default function Header() {
-  let imgs = [
-    "https://external-preview.redd.it/tQged7mKJ3cUpNMq5IMeceZvyKP3cTyHqhNmKEQ0Vv8.png?auto=webp&s=fb5fd61cae0bc9cde2bc2a006b1e2aeb0c935ce9",
-  ];
+export default function Header({ handleSearch }) {
+
   return (
-    <div className=" bg-red-500 sticky top-0 z-20">
-      <div className="py-3">
-        <div className="flex justify-between md:mx-14 max-md:mx-6">
+    <div className="bg-white sticky top-0 z-20 shadow-2xl">
+      <div className="py-1">
+        <div className="flex justify-between md:mx-8 max-md:mx-6">
           <div>
-            <img src={imgs[0]} className="h-15 w-36" />
+            <div className=" relative">
+              <IoSearch
+                className="w-8 h-8 absolute ml-72 flex bottom-10 top-3 right-3 justify-end items-end text-gray-400 pointer-events-none"
+              />
+              <input
+                type="text"
+                onChange={handleSearch}
+                className="border rounded p-1 my-3 min-w-80  focus:outline-none"
+                placeholder="Search Pokemon.."
+              />
+            </div>
           </div>
-          <div className="my-auto font-bold text-white">
-            POKEMON API
-          </div>
+          <div className="my-auto text-gray-500 text-4xl max-md:hidden">PokéDex</div>
         </div>
       </div>
     </div>
   );
 }
-
-const SidebarIcon = ({ icon }) => <div>{icon}</div>;
