@@ -398,7 +398,6 @@ function PokemonCard() {
           <table className="text-left w-full">
               <thead className={` ${posts.types .map((type) => getColorText(type.type.name)) .join(" ")} bg-gray-400 flex text-white w-full rounded-t-lg`}>
                 <tr  class="flex w-full p-2 !text-white">
-                  <th className=" w-1/4">#</th>
                   <th className=" w-1/2">Move</th>
                   <th className="w-1/4"><span className="max-lg:hidden">Level Up Acquired</span><span className="lg:invisible">Level Up...</span></th>
                   <th className="w-1/4">PP</th>
@@ -410,7 +409,6 @@ function PokemonCard() {
               <tbody className="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full" style={{height: '40vh'}}>
                 {posts.moves.sort((a, b) => a.version_group_details[0].level_learned_at - b.version_group_details[0].level_learned_at).filter(move => move.version_group_details.length > 0 && move.version_group_details[0].level_learned_at > 0).map((move, index) => (
                   <tr key={index} className="flex w-full mb-4">
-                    <td className="p-2 w-1/4">{index}</td>
                     <td className="p-2 w-1/2">{move.move.name.charAt(0).toUpperCase() + move.move.name.slice(1)}</td>
                     <td className="p-2 w-1/4">
                       {move.version_group_details[0].level_learned_at}
